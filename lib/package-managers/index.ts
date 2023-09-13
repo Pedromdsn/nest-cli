@@ -6,3 +6,4 @@ export * from './yarn.package-manager';
 export * from './pnpm.package-manager';
 export * from './project.dependency';
 export * from './package-manager-commands';
+export * from './bun.package-manager';
