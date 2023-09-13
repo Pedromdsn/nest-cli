@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import {
+  BunPackageManager,
   NpmPackageManager,
   PackageManagerFactory,
   PnpmPackageManager,
@@ -42,6 +43,15 @@ describe('PackageManagerFactory', () => {
       const whenPackageManager = PackageManagerFactory.find();
       await expect(whenPackageManager).resolves.toBeInstanceOf(
         PnpmPackageManager,
+      );
+    });
+
+    it('should return BunPackageManager when "bun.lockb" file is found', async () => {
+      (fs.promises.readdir as jest.Mock).mockResolvedValue(['bun.lockb']);
+
+      const whenPackageManager = PackageManagerFactory.find();
+      await expect(whenPackageManager).resolves.toBeInstanceOf(
+        BunPackageManager,
       );
     });
 
